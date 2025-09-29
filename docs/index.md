@@ -1,8 +1,4 @@
-<div style="text-align: center;">
-  <img src="assets/img/logo/amlakas.webp" alt="Diagram" width="300" height="200" />
-</div><br>
-
-# AMLakas Documentation
+# Laravel Meilisearch
 
 Welcome to the documentation for this project.  
 This directory contains setup and integration guides for core services that power the application.

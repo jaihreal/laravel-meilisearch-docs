@@ -5,8 +5,8 @@ theme:
   font:
     # text: Roboto
     code: Red Hat Mono
-  logo: assets/img/logo/amlakas.webp
-  favicon: assets/img/favicon.ico
+  # logo: assets/img/logo/amlakas.webp
+  # favicon: assets/img/favicon.ico
 
   palette:
     # Light Mode
