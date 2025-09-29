@@ -1,0 +1,1331 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaihreal.github.io/laravel-meilisearch-docs/services/meilisearch/">
+      
+      
+        <link rel="prev" href="../laravel-scout/">
+      
+      
+        <link rel="next" href="../redis/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Meilisearch - Laravel Meilisearch Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="default">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#meilisearch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Laravel Meilisearch Documentation" class="md-header__button md-logo" aria-label="Laravel Meilisearch Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Laravel Meilisearch Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Meilisearch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="default"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="white"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Laravel Meilisearch Documentation" class="md-nav__button md-logo" aria-label="Laravel Meilisearch Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Laravel Meilisearch Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Laravel Meilisearch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../laravel-horizon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Laravel horizon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../laravel-scout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Laravel scout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Meilisearch
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meilisearch
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-master-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Creating a Master Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Creating a Master Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-own-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate Own Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch-suggestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilisearch Suggestion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-key-securely-eg-in-your-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save the key securely (e.g., in your .env):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-meilisearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Running Meilisearch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-keys-for-api-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. API Keys (For API Access)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-laravel-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Laravel Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-running-meilisearch-as-a-systemd-service-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Running Meilisearch as a Systemd Service (Production)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reverse-proxy-with-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Reverse Proxy with Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Reverse Proxy with Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-https-lets-encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable HTTPS (Let’s Encrypt)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supervisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-master-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Creating a Master Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Creating a Master Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-own-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate Own Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch-suggestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilisearch Suggestion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-key-securely-eg-in-your-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save the key securely (e.g., in your .env):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-meilisearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Running Meilisearch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-keys-for-api-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. API Keys (For API Access)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-laravel-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Laravel Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-running-meilisearch-as-a-systemd-service-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Running Meilisearch as a Systemd Service (Production)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reverse-proxy-with-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Reverse Proxy with Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Reverse Proxy with Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-https-lets-encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable HTTPS (Let’s Encrypt)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div style="text-align: center;">
+  <img src="../../assets/img/logo/meilisearch.svg" alt="Meilisearch Logo" width="300"/>
+</div>
+<p><br></p>
+<h1 id="meilisearch">Meilisearch</h1>
+<p><em>A step-by-step guide on how to install, configure, and integrate Meilisearch with Laravel.</em></p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-overview">Overview</a></li>
+<li><a href="#2-prerequisites">Prerequisites</a></li>
+<li><a href="#3-installation">Installation</a></li>
+<li><a href="#4-creating-a-master-key">Creating a Master Key</a></li>
+<li><a href="#5-running-meilisearch">Running Meilisearch</a></li>
+<li><a href="#6-api-keys-for-api-access">API Keys</a></li>
+<li><a href="#7-laravel-integration">Laravel Integration</a></li>
+<li><a href="#8-verification">Verification</a></li>
+<li><a href="#9-running-meilisearch-as-a-systemd-service-production">Running as a Systemd Service (Production)</a></li>
+<li><a href="#10-reverse-proxy-with-nginx">Reverse Proxy with Nginx</a></li>
+<li><a href="#11-troubleshooting">Troubleshooting</a></li>
+<li><a href="#12-notes">Notes</a></li>
+</ol>
+<hr />
+<h2 id="1-overview">1. Overview</h2>
+<p>This guide will help developers install <strong>Meilisearch</strong>, run the service, generate and use API keys, and connect it to a <strong>Laravel project</strong> for full-text search functionality.</p>
+<p>By following this guide, you will learn:</p>
+<ul>
+<li>How to install Meilisearch in your environment</li>
+<li>How to run Meilisearch and manage API keys</li>
+<li>How to configure Laravel to use Meilisearch</li>
+<li>How to verify everything is working</li>
+</ul>
+<hr />
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before starting, ensure you have the following installed:</p>
+<ul>
+<li><strong>Windows(WSL2 for Dev stage) / Linux</strong></li>
+<li>
+<p><strong>Laravel 9+</strong> project with <strong>Laravel Scout installed</strong></p>
+<ul>
+<li><a href="https://laravel.com/docs/scout">Official Docs</a></li>
+<li><a href="../laravel-scout/">Dev Docs</a></li>
+</ul>
+</li>
+<li>
+<p>PHP <strong>8.1+</strong></p>
+</li>
+<li>Composer installed</li>
+<li>Node.js (optional, if front-end indexing is needed)</li>
+</ul>
+<hr />
+<h2 id="3-installation">3. Installation</h2>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Download Meilisearch</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>curl<span class="w"> </span>-L<span class="w"> </span>https://install.meilisearch.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2. Move meilisearch to a global path</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>sudo<span class="w"> </span>mv<span class="w"> </span>meilisearch<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3. Verify Installation</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>meilisearch<span class="w"> </span>--version
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="4-creating-a-master-key">4. Creating a Master Key</h2>
+<p>Meilisearch requires a <strong>master key</strong> (minimum 16 characters) for authentication.<br />
+You have two options:</p>
+<hr />
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Generate Own Key (Recommended)</label><label for="__tabbed_1_2">Let Meilisearch Suggest One</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="generate-own-key">Generate Own Key</h4>
+<p>You can generate a key in <strong>two ways</strong>:</p>
+<ol>
+<li>
+<p><strong>Generate a secure random key</strong> (recommended for production).
+    <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Generate a secure random key</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>Run:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="hll">openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">32</span>
+</span></span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>Example<span class="w"> </span>output:
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="hll">A3hJf0m7t+UOYZqkK/98i1g9M+0zQhN0KmEY7UwhbDA<span class="o">=</span>
+</span></span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><strong>Define your own key manually</strong> (minimum 16 characters, good for development or testing).</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2. Define your own key manually</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>mySuperStrongKey_2025!
+</span></code></pre></div></td></tr></table></div>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<h4 id="meilisearch-suggestion">Meilisearch Suggestion</h4>
+<p>If you start Meilisearch <strong>without specifying a master key</strong>:</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Start Meilisearch</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>./meilisearch
+</span></code></pre></div></td></tr></table></div>
+<p>It will run in <strong>development mode</strong> and display a randomly generated secure key in the logs, for example:</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Generated a secured master key</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>&gt;&gt;<span class="w"> </span>--master-key<span class="w"> </span>_NdU-sc7sDRdOg08yMoldhstrJoqpw94j_7AkCMH7lk<span class="w"> </span>&lt;&lt;
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>Copy the generated master key.</li>
+<li>Stop Meilisearch (<code>CTRL + C</code>).</li>
+<li>Restart Meilisearch using the copied master key:
+  <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Start Meilisearch with master key</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>./meilisearch<span class="w"> </span>--master-key<span class="w"> </span><span class="s2">&quot;_NdU-sc7sDRdOg08yMoldhstrJoqpw94j_7AkCMH7lk&quot;</span>
+</span></code></pre></div></td></tr></table></div></li>
+</ol>
+</div>
+</div>
+</div>
+<h4 id="save-the-key-securely-eg-in-your-env">Save the key securely (e.g., in your <code>.env</code>):</h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">.env</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>MEILISEARCH_KEY=YOUR_MASTER_KEY
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="5-running-meilisearch">5. Running Meilisearch</h2>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Start Meilisearch</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>meilisearch<span class="w"> </span>--master-key<span class="o">=</span><span class="s2">&quot;MASTER_KEY_EXAMPLE&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Run in Background (Optional)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>nohup<span class="w"> </span>meilisearch<span class="w"> </span>--master-key<span class="o">=</span><span class="s2">&quot;MASTER_KEY_EXAMPLE&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>meilisearch.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="6-api-keys-for-api-access">6. API Keys (For API Access)</h2>
+<p>When you start Meilisearch with a <strong>master key</strong>, it automatically generates API keys for client access.<br />
+These keys are only needed when you <strong>interact with Meilisearch through its API</strong> (not when starting the server).</p>
+<ul>
+<li><strong>Master Key</strong> → Full access (set via <code>--master-key</code> when running Meilisearch)</li>
+<li><strong>Default API Keys</strong> (created automatically after startup):</li>
+<li><strong>Default Search API Key</strong> → Restricted access (search-only operations)</li>
+<li><strong>Default Admin API Key</strong> → Full access (all API operations, same scope as master key but for API use)</li>
+</ul>
+<p>You can list and retrieve all keys using:</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Run</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_MASTER_KEY&quot;</span><span class="w"> </span>http://127.0.0.1:7700/keys
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="7-laravel-integration">7. Laravel Integration</h2>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Install Laravel Scout</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/scout
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2. Install Meilisearch PHP SDK</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>composer<span class="w"> </span>require<span class="w"> </span>meilisearch/meilisearch-php<span class="w"> </span>http-interop/http-factory-guzzle
+</span></code></pre></div></td></tr></table></div>
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3. Configure config/scout.php</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="x">&#39;driver&#39; =&gt; env(&#39;SCOUT_DRIVER&#39;, &#39;meilisearch&#39;),</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">4. Add to .env</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-97">97</a></span>
+<span class="normal"><a href="#__codelineno-15-98">98</a></span>
+<span class="normal"><a href="#__codelineno-15-99">99</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-97"><a id="__codelineno-15-97" name="__codelineno-15-97"></a>SCOUT_DRIVER=meilisearch
+</span><span id="__span-15-98"><a id="__codelineno-15-98" name="__codelineno-15-98"></a>MEILISEARCH_HOST=http://127.0.0.1:7700
+</span><span id="__span-15-99"><a id="__codelineno-15-99" name="__codelineno-15-99"></a>MEILISEARCH_KEY=YOUR_MASTER_KEY
+</span></code></pre></div></td></tr></table></div>
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">5. Use in Laravel Models</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="x">use Laravel\Scout\Searchable;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="x">class Post extends Model</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="x">{</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="x">    use Searchable;</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="x">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">6. Run indexing</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="x">php artisan scout:import &quot;App\Models\Post&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">7. Search in code</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="x">$posts = Post::search(&#39;keyword&#39;)-&gt;get();</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="8-verification">8. Verification</h2>
+<ul>
+<li>Visit: <code>http://127.0.0.1:7700</code> → should show Meilisearch landing page</li>
+<li>
+<p>Run a test search:</p>
+<ul>
+<li>Perform a search using the Meilisearch landing page.</li>
+<li>Perform a search using the Name Screening feature.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="9-running-meilisearch-as-a-systemd-service-production">9. Running Meilisearch as a Systemd Service (Production)</h2>
+<ul>
+<li>To keep Meilisearch running in the background and auto-start on boot, set it up as a <code>systemd</code> service.</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Create Service File</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/meilisearch.service
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Paste the following content (update paths if needed):</li>
+</ul>
+<div class="language-ini highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2. Add Configuration</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">[Unit]</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="na">Description</span><span class="o">=</span><span class="s">Meilisearch</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="k">[Service]</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="na">User</span><span class="o">=</span><span class="s">meili</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="na">Group</span><span class="o">=</span><span class="s">meili</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="na">ExecStart=/usr/local/bin/meilisearch --master-key</span><span class="o">=</span><span class="s">&quot;MASTER_KEY_EXAMPLE&quot;</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="na">LimitNOFILE</span><span class="o">=</span><span class="s">65536</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11"></a>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="k">[Install]</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Replace <code>MASTER_KEY_EXAMPLE</code> with your real master key.
+For security, consider creating a dedicated user:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-s<span class="w"> </span>/bin/false<span class="w"> </span>meili
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>meili:meili<span class="w"> </span>/usr/local/bin/meilisearch
+</span></code></pre></div>
+</blockquote>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3. Reload systemd and Enable Service</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>meilisearch
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>meilisearch
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">4. Check Status</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a>systemctl<span class="w"> </span>status<span class="w"> </span>meilisearch
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>You should see it active (running).</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">5. Check Logs</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>meilisearch<span class="w"> </span>-f
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="10-reverse-proxy-with-nginx">10. Reverse Proxy with Nginx</h2>
+<p>You can run Meilisearch behind <strong>Nginx</strong> for easier access.<br />
+The setup differs for <strong>local development (WSL2)</strong> vs <strong>production servers</strong>.</p>
+<hr />
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Development Setup (WSL2 AlmaLinux)</label><label for="__tabbed_2_2">Production Setup (AlmaLinux Server)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="development-setup">Development Setup</h4>
+<p>In WSL2, you can use Nginx to proxy Meilisearch to <code>http://localhost</code> or a custom domain via the Windows hosts file.
+SSL (Let’s Encrypt) is not practical in WSL2 because it requires a public IP.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Install Nginx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx<span class="w"> </span>-y
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx<span class="w">   </span><span class="c1"># Works only if systemd enabled</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2-a. Create Meilisearch config</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/conf.d/meilisearch.conf
+</span></code></pre></div></td></tr></table></div>
+<div class="language-nginx highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2-b. Meilisearch configuration content</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">search.local</span><span class="p">;</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w">         </span><span class="s">http://127.0.0.1:7700</span><span class="p">;</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3-a. Update Windows Hosts File</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a>Edit `C:\Windows\System32\drivers\etc\hosts` on Windows:
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3-b. Windows Hosts File content</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a>127.0.0.1 meilisearch.dev
+</span></code></pre></div></td></tr></table></div>
+<p>Now you can access Meilisearch at: http://meilisearch.dev</p>
+</div>
+<div class="tabbed-block">
+<h4 id="production-setup">Production Setup</h4>
+<p>On a live server with a public IP and DNS domain, you can secure Meilisearch with HTTPS.</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">1. Install Nginx</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx<span class="w"> </span>-y
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2-a. Create Meilisearch config</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/conf.d/meilisearch.conf
+</span></code></pre></div></td></tr></table></div>
+<div class="language-nginx highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">2-b. Meilisearch configuration content</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span>
+<span class="normal"><a href="#__codelineno-32-11">11</a></span>
+<span class="normal"><a href="#__codelineno-32-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">meilisearch.domain.com</span><span class="p">;</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w">         </span><span class="s">http://127.0.0.1:7700</span><span class="p">;</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">3. Test and Reload</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+</span></code></pre></div></td></tr></table></div>
+<p>Now available at: http://meilisearch.domain.com</p>
+</div>
+</div>
+</div>
+<hr />
+<h4 id="enable-https-lets-encrypt">Enable HTTPS (Let’s Encrypt)</h4>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Install Certbot</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-nginx<span class="w"> </span>-y
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Run Certbot</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a>sudo<span class="w"> </span>certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>meilisearch.domain.com
+</span></code></pre></div></td></tr></table></div>
+<p>Meilisearch will now be available securely at: https://meilisearch.domain.com</p>
+<hr />
+<p><strong>Summary</strong></p>
+<ul>
+<li><strong>WSL2 (Development)</strong> → Use http://localhost or fake domain via hosts file (no SSL).</li>
+<li><strong>Production</strong> → Use real domain with Nginx + Let’s Encrypt for HTTPS.</li>
+</ul>
+<hr />
+<h2 id="11-troubleshooting">11. Troubleshooting</h2>
+<ul>
+<li><strong>Service not running</strong></li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Check if Meilisearch is active</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>meilisearch
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">or (if running manually)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>meilisearch
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Port conflicts</strong></li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Ensure nothing else is using 7700</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a>sudo<span class="w"> </span>lsof<span class="w"> </span>-i<span class="w"> </span>:7700
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Invalid API key</strong></li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Confirm .env in Laravel uses the correct YOUR_MASTER_KEY</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_MASTER_KEY&quot;</span><span class="w"> </span>http://127.0.0.1:7700/health
+</span></code></pre></div></td></tr></table></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Expected output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Connection issues</strong> → If Laravel/Scout can’t connect:</p>
+</li>
+<li>
+<p>Verify Meilisearch is listening on <code>127.0.0.1:7700</code>.</p>
+</li>
+<li>If using Docker: confirm container is running and port mapped.</li>
+<li>If using systemd: check firewall settings.</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Diagram</strong></li>
+</ul>
+<pre class="mermaid"><code>graph LR
+
+A[Start Meilisearch] --&gt; B{Error?};
+B --&gt; |Yes| C[Investigate];
+C --&gt; D[Troubleshoot];
+D --&gt; B;
+B ----&gt; |No| E[Success];</code></pre>
+<hr />
+<h2 id="12-notes">12. Notes</h2>
+<ul>
+<li>Meilisearch is the actual search engine → Scout only acts as a bridge.</li>
+<li>Secure access → Always use a <code>masterKey</code> and configure API keys for read/write separation.</li>
+<li>Consider SSL/TLS → Run Meilisearch behind Nginx or Caddy with HTTPS for production.</li>
+<li>Monitor resource usage → Large datasets may require tuning memory/CPU allocation.</li>
+<li>Backup indexes → Regularly export data if using Meilisearch in production:</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Enables automatic database dumps</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a>meilisearch<span class="w"> </span>--dump-dir<span class="w"> </span>./backups
+</span></code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://facebook.com" target="_blank" rel="noopener" title="facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a9 9 0 0 1 1.141.195v3.325a9 9 0 0 0-.653-.036 27 27 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.7 1.7 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://youtube.com" target="_blank" rel="noopener" title="youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../assets/js/smooth-scroll.js"></script>
+      
+    
+  </body>
+</html>
